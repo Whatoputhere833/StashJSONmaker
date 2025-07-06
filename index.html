@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stash JSON Maker</title>
+  <link id="theme-style" rel="stylesheet" href="default.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <h1>Stash JSON Maker</h1>
+
+    <!-- Style Selector -->
+    <div id="style-toggle">
+      <label for="styleSelect">Style:</label>
+      <select id="styleSelect">
+        <option value="default">Default</option>
+        <option value="ac">Animal Company</option>
+      </select>
+    </div>
+
+    <!-- Filename input -->
+    <input type="text" id="filename" placeholder="Enter filename..." />
+
+    <!-- Editor container -->
+    <div id="editor"></div>
+
+    <!-- Download button -->
+    <button onclick="downloadJSON()">Download JSON</button>
+
+    <!-- JSON output -->
+    <pre id="json-output"></pre>
+  </div>
+
+  <!-- Item list for dropdown (populate manually) -->
+  <datalist id="item-options">
+    <option value="item_apple">Apple</option>
+<option value="item_anti_gravity_grenade">Anti-Gravity Grenade</option>
+<option value="item_arrow">Arrow</option>
+<option value="item_arrow_heart">Arrow Heart</option>
+<option value="item_arrow_lightbulb">Arrow Lightbulb</option>
+<option value="item_arena_pistol">Arena Pistol</option>
+<option value="item_arena_shotgun">Arena Shotgun</option>
+<option value="item_backpack">Backpack</option>
+<option value="item_backpack_black">Black Backpack</option>
+<option value="item_backpack_green">Green Backpack</option>
+<option value="item_backpack_large_base">Large Base Backpack</option>
+<option value="item_backpack_large_clover">Large Clover Backpack</option>
+<option value="item_backpack_large_basketball">Large Basketball Backpack</option>
+<option value="item_backpack_pink">Pink Backpack</option>
+<option value="item_backpack_small_base">Small Base Backpack</option>
+<option value="item_backpack_white">White Backpack</option>
+<option value="item_backpack_with_flashlight">Backpack with Flashlight</option>
+<option value="item_balloon">Balloon</option>
+<option value="item_balloon_heart">Heart Balloon</option>
+<option value="item_banana">Banana</option>
+<option value="item_baseball_bat">Baseball Bat</option>
+<option value="item_big_cup">Big Cup</option>
+<option value="item_boombox">Boombox</option>
+<option value="item_box_fan">Box Fan</option>
+<option value="item_boombox_neon">Neon Boombox</option>
+<option value="item_calculator">Calculator</option>
+<option value="item_cardboard_box">Cardboard Box</option>
+<option value="item_cash">Cash</option>
+<option value="item_cash_pile">Cash Pile</option>
+<option value="item_cash_mega_pile">Mega Cash Pile</option>
+<option value="item_clapper">Clapper</option>
+<option value="item_cluster_grenade">Cluster Grenade</option>
+<option value="item_cola">Cola</option>
+<option value="item_cola_large">Large Cola</option>
+<option value="item_company_ration">Company Ration</option>
+<option value="item_company_ration_heal">Company Ration (Heal)</option>
+<option value="item_cracker">Cracker</option>
+<option value="item_crate">Crate</option>
+<option value="item_crossbow">Crossbow</option>
+<option value="item_crossbow_heart">Heart Crossbow</option>
+<option value="item_crowbar">Crowbar</option>
+<option value="item_disc">Disc</option>
+<option value="item_disposable_camera">Disposable Camera</option>
+<option value="item_dynamite">Dynamite</option>
+<option value="item_dynamite_cube">Dynamite Cube</option>
+<option value="item_hawaiian_drum">Drums</option>
+<option value="item_egg">Yummy Egg!</option>
+<option value="item_flaregun">Flare Gun</option>
+<option value="item_flashbang">Flashbang</option>
+<option value="item_flashlight">Flashlight</option>
+<option value="item_flashlight_mega">Mega Flashlight</option>
+<option value="item_flashlight_red">Red Flashlight</option>
+<option value="item_floppy3">Floppy 3</option>
+<option value="item_floppy5">Floppy 5</option>
+<option value="item_football">Football</option>
+<option value="item_frying_pan">Frying Pan</option>
+<option value="item_glowstick">Glowstick</option>
+<option value="item_goldbar">Gold Bar</option>
+<option value="item_grenade">Grenade</option>
+<option value="item_heart_chunk">Heart Chunk</option>
+<option value="item_heart_gun">Heart Gun</option>
+<option value="item_heartchocolatebox">Heart Chocolate Box</option>
+<option value="item_hh_key">HH Key</option>
+<option value="item_hookshot">Hookshot</option>
+<option value="item_hookshot_sword">Yeetblade</option>
+<option value="item_hoverpad">Hoverpad</option>
+<option value="item_impulse_grenade">Impulse Grenade</option>
+<option value="item_jetpack">Jetpack</option>
+<option value="item_keycard">Keycard</option>
+<option value="item_lance">Lance</option>
+<option value="item_large_banana">Large Banana</option>
+<option value="item_mug">Mug</option>
+<option value="item_landmine">landmine</option>
+<option value="item_nut">Nut</option>
+<option value="item_ogre_hands">Ogre Hands</option>
+<option value="item_ore_copper_l">Large Copper Ore</option>
+<option value="item_ore_copper_m">Medium Copper Ore</option>
+<option value="item_ore_copper_s">Small Copper Ore</option>
+<option value="item_ore_gold_l">Large Gold Ore</option>
+<option value="item_ore_gold_m">Medium Gold Ore</option>
+<option value="item_ore_gold_s">Small Gold Ore</option>
+<option value="item_ore_hell">***** Ore</option>
+<option value="item_ore_silver_l">Large Silver Ore</option>
+<option value="item_ore_silver_m">Medium Silver Ore</option>
+<option value="item_ore_silver_s">Small Silver Ore</option>
+<option value="item_painting_canvas">Painting Canvas</option>
+<option value="item_paperpack">Paper Pack</option>
+<option value="item_pelican_case">Suit/Pelican Case</option>
+<option value="item_pickaxe">Pickaxe</option>
+<option value="item_pickaxe_cny">CNY Pickaxe</option>
+<option value="item_pickaxe_cube">Cube Pickaxe</option>
+<option value="item_pipe">Pipe</option>
+<option value="item_pinata_bat">Pinata Bat</option>
+<option value="item_plunger">Plunger</option>
+<option value="item_pogostick">Pogostick</option>
+<option value="item_police_baton">Police Baton</option>
+<option value="item_pumpkin_pie">Pumpkin Pie</option>
+<option value="item_pumpkinjack">Pumpkin Jack</option>
+<option value="item_pumpkinjack_small">Small Pumpkin Jack</option>
+<option value="item_quiver">Quiver</option>
+<option value="item_quiver_heart">Heart Quiver</option>
+<option value="item_radioactive_broccoli">Radioactive Broccoli</option>
+<option value="item_broccoli_grenade">Brocoli Bomb Hugify</option>
+<option value="item_broccoli_shrink_grenade">Brocoli Bomb Shrinkify</option>
+<option value="item_randombox_mobloot_big">Random Box Mob Loot (Big)</option>
+<option value="item_randombox_mobloot_medium">Random Box Mob Loot (Medium)</option>
+<option value="item_randombox_mobloot_small">Random Box Mob Loot (Small)</option>
+<option value="item_randombox_mobloot_weapons">Random Box Mob Loot (Weapons)</option>
+<option value="item_revolver">Revolver</option>
+<option value="item_revolver_ammo">Revolver Ammo</option>
+<option value="item_rope">Rope</option>
+<option value="item_rpg">RPG</option>
+<option value="item_rpg_spear">Boomspear</option>
+<option value="item_rpg_ammo">RPG Ammo</option>
+<option value="item_rpg_ammo_spear">RPG Ammo Spear</option>
+<option value="item_rpg_cny">CNY RPG</option>
+<option value="item_rubberducky">Rubber Ducky</option>
+<option value="item_ruby">Ruby</option>
+<option value="item_saddle">Saddle</option>
+<option value="item_scanner">Scanner</option>
+<option value="item_scissors">Scissors</option>
+<option value="item_shield">Shield</option>
+<option value="item_shield_bones">Bones Shield</option>
+<option value="item_shield_police">Police Shield</option>
+<option value="item_shotgun">Shotgun</option>
+<option value="item_shotgun_ammo">Shotgun Ammo</option>
+<option value="item_shredder">Shredder</option>
+<option value="item_shrinking_broccoli">Shrinking Broccoli</option>
+<option value="item_snowball">Snowball</option>
+<option value="item_stapler">Stapler</option>
+<option value="item_stick_armbones">Stick Arm Bones</option>
+<option value="item_stick_bone">Stick Bone</option>
+<option value="item_sticker_dispenser">Sticker Dispenser</option>
+<option value="item_sticky_dynamite">Sticky Dynamite</option>
+<option value="item_stinky_cheese">Stinky Cheese</option>
+<option value="item_tablet">Tablet</option>
+<option value="item_tapedispenser">Tape Dispenser</option>
+<option value="item_tele_grenade">Tele Grenade</option>
+<option value="item_theremin">Theremin</option>
+<option value="item_timebomb">Time Bomb</option>
+<option value="item_toilet_paper">Toilet Paper</option>
+<option value="item_toilet_paper_mega">Mega Toilet Paper</option>
+<option value="item_toilet_paper_roll_empty">Empty Toilet Paper Roll</option>
+<option value="item_treestick">Tree Stick</option>
+<option value="item_tripwire_explosive">Tripwire Explosive</option>
+<option value="item_trophy">Trophy</option>
+<option value="item_turkey_leg">Turkey Leg</option>
+<option value="item_turkey_whole">Whole Turkey</option>
+<option value="item_umbrella">Umbrella</option>
+<option value="item_umbrella_clover">Clover Umbrella</option>
+<option value="item_unidentified">Unidentified</option>
+<option value="item_ukulele">Ukulele</option>
+<option value="item_ukulele_gold">Gold Ukulelepple</option>
+<option value="item_upsidedown_loot">Upside Down Loot</option>
+<option value="item_uranium_chunk_l">Large Uranium Chunk</option>
+<option value="item_uranium_chunk_m">Medium Uranium Chunk</option>
+<option value="item_uranium_chunk_s">Small Uranium Chunk</option>
+<option value="item_whoopie">Whoopie</option>
+<option value="item_zipline_gun">Zipline Gun</option>
+<option value="item_rpg_easter">Easter RPG</option>
+<option value="item_rpg_ammo_egg">RPG Ammo Egg</option>
+<option value="item_revolver_gold">Gold Revolver</option>
+<option value="item_viking_hammer">Hammer Yellow</option>
+<option value="item_viking_hammer_twilight ">Hammer Twilight</option>
+<option value="item_zombie_meat">Zombie Flesh</option>
+<option value="item_randombox_mobloot_zombie">Zombie Loot Box</option>
+<option value="item_shield_viking_1">Viking Shield 1</option>
+<option value="item_shield_viking_2">Viking Shield 2</option>
+<option value="item_shield_viking_3">Viking Shield 3</option>
+<option value="item_shield_viking_4">Viking Shield 4</option>
+<option value="item_arrow_teleport">Arrow Teleport</option>
+<option value="item_arrow_bomb">Arrow Bomb</option>
+<option value="item_portable_teleporter">Portable Teleporter</option>
+<option value="item_drill">BFD9000/Drill</option>
+<option value="item_ceo_plaque">CEO Plaque</option>
+<option value="item_d20">D20</option>
+<option value="item_electrical_tape">Eletrical Tape</option>
+<option value="item_eraser">Eraser</option>
+<option value="item_finger_board">Finger Board</option>
+<option value="item_gameboy">Game Box</option>
+<option value="item_goldcoin">Golden Coin</option>
+<option value="item_harddrive">Encrypted Data</option>
+<option value="item_rare_card">Rare Trading Card</option>
+<option value="item_server_pad">Broken Tablet</option>
+<option value="item_teleport_gun">Teleport Gun</option>
+<option value="item_golden_grenade">Golden Grenade</option>
+  </datalist>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

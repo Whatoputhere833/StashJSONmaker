@@ -1,0 +1,161 @@
+/* Base layout */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #000E00; /* Updated from #002b00 */
+  font-family: 'Kode Mono', monospace;
+  color: #39ff14;
+}
+
+/* App container */
+#app {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+}
+
+/* Header */
+h1 {
+  font-size: 3em;
+  font-weight: normal;
+  color: #39ff14;
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  background: #003300;
+  border: 1px solid #39ff14;
+}
+
+/* Style toggle */
+#style-toggle {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+#styleSelect {
+  font-family: 'Kode Mono', monospace;
+  background: #003000;
+  color: #39ff14;
+  font-size: 16px;
+  padding: 6px 10px;
+  border: 1px solid #39ff14;
+}
+
+/* Filename input */
+#filename {
+  display: block;
+  width: 300px;
+  margin-bottom: 1rem;
+  font-size: 18px;
+  padding: 10px;
+  border: 1px solid #39ff14;
+  background: #003000;
+  color: #39ff14;
+}
+
+/* Item block */
+.item-block {
+  border: 1px solid #39ff14;
+  background: #003300;
+  padding: 16px;
+  margin-bottom: 2rem;
+}
+
+/* Labels */
+label {
+  font-size: 20px;
+  padding: 10px;
+  margin-bottom: 0.5rem;
+  background: #003000;
+  border: 1px solid #39ff14;
+  display: block;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="number"],
+select {
+  height: 50px;
+  font-size: 20px;
+  background: #003000;
+  color: #39ff14;
+  border: 1px solid #39ff14;
+  width: 100%;
+}
+input::placeholder {
+  color: #66ff66;
+  font-style: italic;
+}
+input:focus {
+  outline: 2px solid #39ff14;
+}
+
+/* Sliders */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  background: #003000;
+  border: 1px solid #39ff14;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #39ff14;
+  border: none;
+}
+
+/* Buttons */
+button {
+  height: 50px;
+  font-size: 18px;
+  background: #003300;
+  color: #39ff14;
+  border: 1px solid #39ff14;
+  padding: 0 1rem;
+  cursor: pointer;
+  margin: 0.5rem 0.25rem;
+}
+button:hover {
+  background: #004000;
+}
+
+/* Template buttons */
+.template-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.template-buttons button {
+  height: 40px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  background: #002200;
+  border: 1px solid #39ff14;
+}
+
+/* Swatch preview inside template buttons */
+.template-buttons span {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border: 1px solid white;
+}
+
+/* JSON preview */
+#json-output {
+  background: #001f00;
+  color: #39ff14;
+  border: 1px solid #39ff14;
+  font-family: 'Courier New', monospace;
+  padding: 1rem;
+  font-size: 18px;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  margin-top: 2rem;
+}
